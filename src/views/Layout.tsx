@@ -56,7 +56,7 @@ const Home = () => {
         className="h-full overflow-auto overscroll-none bg-[#1e2936] z-20 fixed top-0 left-0  w-[250px] -translate-x-full transition-all duration-500 ease-in-out lg:h-auto lg:static lg:translate-x-0 lg:shrink-0 lg:shadow-2xl lg:shadow-indigo-600"
         ref={asideRef}
       >
-        <div className="h-16 flex justify-center items-center shadow-md">
+        <div className="h-16 flex justify-center items-center ">
           <img src="https://www.ibnrushd.se/wp-content/uploads/2021/10/ibn-rushd-loga.png"className="w-16 pr-6"/>
           <Link to="/" className="text-white text-2xl font-medium">
             IBNRUSHD  
@@ -65,7 +65,7 @@ const Home = () => {
         <Nav />
       </aside>
       <div className="w-full lg:w-auto lg:grow">
-        <header className="bg-white h-16 flex justify-between items-center p-4 shadow">
+        <header className="bg-white h-16 flex justify-between items-center p-4 shadow-[-5px_6px_2px_rgba(0,0,0,0.3)]">
           <Bars3Icon
             className="h-6 w-6 stroke-indigo-dark  lg:cursor-pointer"
             onClick={toggleAside}

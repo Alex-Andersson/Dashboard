@@ -1,5 +1,5 @@
 import {
-  ChartPieIcon,
+  CalendarIcon,
   HomeIcon,
   PencilSquareIcon,
   TableCellsIcon,
@@ -25,17 +25,17 @@ const Nav = () => {
       title: "COMPONENTS",
       items: [
         {
-          name: "Forms",
+          name: "Courses",
           icon: <PencilSquareIcon className="h-5 w-5 stroke-white" />,
           child: [
             {
-              name: "General Form",
+              name: "Courses",
+              path: "forms/courses",
+            },
+            {
+              name: "Add Courses",
               path: "forms/general",
             },
-            // {
-            //   name: "Advanced Form",
-            //   path: "forms/advanced",
-            // },
           ],
         },
         {
@@ -49,27 +49,13 @@ const Nav = () => {
           ],
         },
         {
-          name: "Charts",
-          icon: <ChartPieIcon className="h-5 w-5 stroke-white" />,
+          name: "Calender",
+          icon: <CalendarIcon className="h-5 w-5 stroke-white" />,
           child: [
             {
-              name: "Chart.js",
-              path: "charts/chartjs",
+              name: "Calender",
+              path: "calender/calender",
             },
-          ],
-        },
-        {
-          name: "Icons",
-          icon: <HeartIcon className="h-5 w-5 stroke-white" />,
-          child: [
-            {
-              name: "heroicons",
-              path: "icons/heroicons",
-            },
-            // {
-            //   name: "Bootstrap",
-            //   path: "icons/bootstrap",
-            // },
           ],
         },
       ],

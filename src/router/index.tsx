@@ -5,13 +5,13 @@ import SignIn from "../views/SignIn";
 import Home from "../views/Home";
 import Saas from "../views/Saas";
 import Layout from "../views/Layout";
+import Calendar from "../views/Calendar/Calendar";
 import FormGeneral from "../views/Forms/General";
 import TableBasic from "../views/Tables/Basic";
-import ChartJs from "../views/Charts/Chartjs";
 import NotFound from "../views/Errors/NotFound";
 import ServerError from "../views/Errors/ServerError";
 import SignUp from "../views/SignUp";
-import Heroicon from "../views/Icons/Heroicon";
+import Courses  from "../views/Forms/Courses";
 
 const Router = () => {
   return (
@@ -29,16 +29,14 @@ const Router = () => {
           <Route path="home" element={<Home />} />
           <Route path="saas" element={<Saas />} />
           <Route path="forms">
-            <Route path="general" element={<FormGeneral />} />
+            <Route path="general" element={<FormGeneral />} /> 
+            <Route path="courses" element={<Courses />} /> 
           </Route>
           <Route path="tables">
             <Route path="basic" element={<TableBasic />} />
           </Route>
-          <Route path="charts">
-            <Route path="chartjs" element={<ChartJs />} />
-          </Route>
-          <Route path="icons">
-            <Route path="heroicons" element={<Heroicon />} />
+          <Route path="calender">
+            <Route path="calender" element={<Calendar />} />
           </Route>
         </Route>
         <Route path="/sign-in" element={<SignIn />} />
