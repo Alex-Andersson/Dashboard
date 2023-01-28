@@ -3,10 +3,8 @@ import {
   HomeIcon,
   PencilSquareIcon,
   TableCellsIcon,
-  HeartIcon,
   DocumentIcon,
 } from "@heroicons/react/24/outline";
-import React from "react";
 import List from "./List";
 
 const Nav = () => {
@@ -34,17 +32,21 @@ const Nav = () => {
             },
             {
               name: "Add Courses",
-              path: "forms/general",
+              path: "forms/AddCourse",
             },
           ],
         },
         {
-          name: "Tables",
+          name: "Stuidents",
           icon: <TableCellsIcon className="h-5 w-5 stroke-white" />,
           child: [
             {
-              name: "Basic Table",
-              path: "tables/basic",
+              name: "Stuidents",
+              path: "Stuidents/Stuidents",
+            },
+            {
+              name: "Add Stuidents",
+              path: "Stuidents/AddStuidents",
             },
           ],
         },

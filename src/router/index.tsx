@@ -6,12 +6,14 @@ import Home from "../views/Home";
 import Saas from "../views/Saas";
 import Layout from "../views/Layout";
 import Calendar from "../views/Calendar/Calendar";
-import FormGeneral from "../views/Forms/General";
-import TableBasic from "../views/Tables/Basic";
+import AddCourses from "../views/Forms/AddCourse";
+import Stuidents from "../views/Stuidents/Stuidents";
 import NotFound from "../views/Errors/NotFound";
 import ServerError from "../views/Errors/ServerError";
 import SignUp from "../views/SignUp";
 import Courses  from "../views/Forms/Courses";
+import AddStudients from "../views/Stuidents/AddStudients";
+
 
 const Router = () => {
   return (
@@ -29,11 +31,12 @@ const Router = () => {
           <Route path="home" element={<Home />} />
           <Route path="saas" element={<Saas />} />
           <Route path="forms">
-            <Route path="general" element={<FormGeneral />} /> 
+            <Route path="AddCourse" element={<AddCourses />} /> 
             <Route path="courses" element={<Courses />} /> 
           </Route>
-          <Route path="tables">
-            <Route path="basic" element={<TableBasic />} />
+          <Route path="Stuidents">
+            <Route path="Stuidents" element={<Stuidents />} />
+            <Route path="AddStuidents" element={<AddStudients />} />
           </Route>
           <Route path="calender">
             <Route path="calender" element={<Calendar />} />
