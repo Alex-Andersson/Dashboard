@@ -4,6 +4,8 @@ import {
   PencilSquareIcon,
   TableCellsIcon,
   DocumentIcon,
+  ViewColumnsIcon,
+  FolderOpenIcon
 } from "@heroicons/react/24/outline";
 import List from "./List";
 
@@ -28,11 +30,11 @@ const Nav = () => {
           child: [
             {
               name: "Courses",
-              path: "forms/courses",
+              path: "Courses/Courses",
             },
             {
               name: "Add Courses",
-              path: "forms/AddCourse",
+              path: "Courses/AddCourse",
             },
           ],
         },
@@ -57,6 +59,26 @@ const Nav = () => {
             {
               name: "Calender",
               path: "calender/calender",
+            },
+          ],
+        },
+        {
+          name: "ScrumBoard",
+          icon: <ViewColumnsIcon className="h-5 w-5 stroke-white" />,
+          child: [
+            {
+              name: "ScrumBoard",
+              path: "ScrumBoard/ScrumBoard",
+            },
+          ],
+        },
+        {
+          name: "File Manager",
+          icon: <FolderOpenIcon className="h-5 w-5 stroke-white" />,
+          child: [
+            {
+              name: "Task",
+              path: "Task/Task",
             },
           ],
         },

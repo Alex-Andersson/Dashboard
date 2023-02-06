@@ -3,16 +3,21 @@ import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import AuthContext, { useAuth, authProvider } from "../contexts/auth";
 import SignIn from "../views/SignIn";
 import Home from "../views/Home";
-import Saas from "../views/Saas";
 import Layout from "../views/Layout";
 import Calendar from "../views/Calendar/Calendar";
-import AddCourses from "../views/Forms/AddCourse";
+import AddCourses from "../views/Courses/AddCourse";
 import Stuidents from "../views/Stuidents/Stuidents";
 import NotFound from "../views/Errors/NotFound";
 import ServerError from "../views/Errors/ServerError";
 import SignUp from "../views/SignUp";
-import Courses  from "../views/Forms/Courses";
+import Courses  from "../views/Courses/Courses";
 import AddStudients from "../views/Stuidents/AddStudients";
+import ScrumBoard from "../views/ScrumBoard/Home/ScrumBoard";
+import Task from "../views/Task/Task";
+
+
+
+
 
 
 const Router = () => {
@@ -29,8 +34,7 @@ const Router = () => {
         >
           <Route index element={<Home />} />
           <Route path="home" element={<Home />} />
-          <Route path="saas" element={<Saas />} />
-          <Route path="forms">
+          <Route path="Courses">
             <Route path="AddCourse" element={<AddCourses />} /> 
             <Route path="courses" element={<Courses />} /> 
           </Route>
@@ -40,6 +44,12 @@ const Router = () => {
           </Route>
           <Route path="calender">
             <Route path="calender" element={<Calendar />} />
+          </Route>
+          <Route path="ScrumBoard">
+            <Route path="ScrumBoard" element={<ScrumBoard />} />
+          </Route>
+          <Route path="Task">
+            <Route path="Task" element={<Task />} />
           </Route>
         </Route>
         <Route path="/sign-in" element={<SignIn />} />

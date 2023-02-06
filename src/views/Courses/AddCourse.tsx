@@ -6,16 +6,16 @@ const AddCourse = () => {
       <form
         action="#"
         method="POST"
-        className="mt-4"
+        className="mt-4 "
         onSubmit={(e) => e.preventDefault()}
       >
-        <div className="shadow rounded overflow-hidden">
-          <div className="bg-white px-4 py-5 sm:p-6">
-            <div className="grid grid-cols-6 gap-6">
+        <div className=" shadow rounded overflow-hidden">
+          <div className="bg-[#1e2936] shadow-shadow-[-2px_2px_0px_rgba(0,0,0,0.3)]  px-4 py-5 sm:p-6">
+            <div className="grid grid-cols-6 gap-6 ">
               <div className="col-span-6 sm:col-span-3">
                 <label
                   htmlFor="Course"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-white"
                 >
                   Course
                 </label>
@@ -31,7 +31,7 @@ const AddCourse = () => {
               <div className="col-span-6 sm:col-span-3">
                 <label
                   htmlFor="Start-date"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-white"
                 >
                   Start-date
                 </label>
@@ -47,7 +47,7 @@ const AddCourse = () => {
               <div className="col-span-6 sm:col-span-4">
                 <label
                   htmlFor="Course-End"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-white"
                 >
                   Course-End
                 </label>
@@ -63,7 +63,7 @@ const AddCourse = () => {
               <div className="col-span-6 sm:col-span-3">
                 <label
                   htmlFor="Courses"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-white"
                 >
                   Courses
                 </label>
@@ -82,10 +82,10 @@ const AddCourse = () => {
 
             </div>
           </div>
-          <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
+          <div className="bg-[#1e2936] shadow-[-2px_2px_0px_rgba(0,0,0,0.3)]   px-4 py-3 text-right sm:px-6">
             <button
               type="submit"
-              className="inline-flex justify-center rounded-md border border-transparent bg-indigo-[#81c341] py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-[#81c341] focus:outline-none focus:ring-2 focus:ring-indigo-[#81c341] focus:ring-offset-2"
+              className="inline-flex justify-center rounded-md border border-transparent bg-lime-700 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-lime-400 focus:outline-none focus:ring-2 focus:ring-indigo-[#81c341] focus:ring-offset-2"
             >
               Save
             </button>
@@ -99,11 +99,11 @@ const AddCourse = () => {
         onSubmit={(e) => e.preventDefault()}
       >
         <div className="shadow rounded overflow-hidden">
-          <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
+          <div className="space-y-6 bg-[#1e2936] shadow-[-2px_2px_0px_rgba(0,0,0,0.3)]  px-4 py-5 sm:p-6">
             <fieldset>
               <legend className="sr-only">By Email</legend>
               <div
-                className="text-base font-medium text-gray-900"
+                className="text-base font-medium text-white"
                 aria-hidden="true"
               >
                 Settings
@@ -115,17 +115,17 @@ const AddCourse = () => {
                       id="Settings"
                       name="comments"
                       type="checkbox"
-                      className="h-4 w-4 rounded border-gray-400 text-lime-600 focus:ring-lime-500"
+                      className="h-4 w-4 rounded border-white text-lime-600 focus:ring-lime-500"
                     />
                   </div>
                   <div className="ml-3 text-sm">
                     <label
                       htmlFor="comments"
-                      className="font-medium text-gray-700"
+                      className="font-medium text-white"
                     >
                       Course Time
                     </label>
-                    <p className="text-gray-500">
+                    <p className="text-stone-400">
                       Full-time
                     </p>
                   </div>
@@ -142,11 +142,11 @@ const AddCourse = () => {
                   <div className="ml-3 text-sm">
                     <label
                       htmlFor="comments"
-                      className="font-medium text-gray-700"
+                      className="font-medium text-white"
                     >
                       Course Time
                     </label>
-                    <p className="text-gray-500">
+                    <p className="text-stone-400">
                       Full-time
                     </p>
                   </div>
@@ -163,11 +163,11 @@ const AddCourse = () => {
                   <div className="ml-3 text-sm">
                     <label
                       htmlFor="candidates"
-                      className="font-medium text-gray-700"
+                      className="font-medium text-white"
                     >
                       Candidates
                     </label>
-                    <p className="text-gray-500">
+                    <p className="text-stone-400">
                       Get notified when a candidate applies for a job.
                     </p>
                   </div>
@@ -184,11 +184,11 @@ const AddCourse = () => {
                   <div className="ml-3 text-sm">
                     <label
                       htmlFor="offers"
-                      className="font-medium text-gray-700"
+                      className="font-medium text-white"
                     >
                       Offers
                     </label>
-                    <p className="text-gray-500">
+                    <p className="text-stone-400">
                       Get notified when a candidate accepts or rejects an offer.
                     </p>
                   </div>
@@ -196,10 +196,10 @@ const AddCourse = () => {
               </div>
             </fieldset>
             <fieldset>
-              <legend className="contents text-base font-medium text-gray-900">
+              <legend className="contents text-base font-medium text-white">
                 Push Notifications
               </legend>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-stone-400">
                 These are delivered via SMS to your mobile phone.
               </p>
               <div className="mt-4 space-y-4">
@@ -212,7 +212,7 @@ const AddCourse = () => {
                   />
                   <label
                     htmlFor="push-everything"
-                    className="ml-3 block text-sm font-medium text-gray-700"
+                    className="ml-3 block text-sm font-medium text-white"
                   >
                     Everything
                   </label>
@@ -226,7 +226,7 @@ const AddCourse = () => {
                   />
                   <label
                     htmlFor="push-email"
-                    className="ml-3 block text-sm font-medium text-gray-700"
+                    className="ml-3 block text-sm font-medium text-white"
                   >
                     Same as email
                   </label>
@@ -240,7 +240,7 @@ const AddCourse = () => {
                   />
                   <label
                     htmlFor="push-nothing"
-                    className="ml-3 block text-sm font-medium text-gray-700"
+                    className="ml-3 block text-sm font-medium text-white"
                   >
                     No push notifications
                   </label>
@@ -248,10 +248,10 @@ const AddCourse = () => {
               </div>
             </fieldset>
           </div>
-          <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
+          <div className="bg-[#1e2936] shadow-[-2px_2px_0px_rgba(0,0,0,0.3)] px-4 py-3 text-right sm:px-6">
             <button
               type="submit"
-              className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              className="inline-flex justify-center rounded-md border border-transparent bg-lime-700 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-lime-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
               Save
             </button>

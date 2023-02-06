@@ -51,9 +51,9 @@ const Home = () => {
   }, [location]);
 
   return (
-    <div className="bg-gray-100 flex min-h-screen w-full lg:h-auto">
+    <div className="bg-[#182032] flex min-h-screen w-full lg:h-auto">
       <aside
-        className="h-full overflow-auto overscroll-none bg-[#1e2936] z-20 fixed top-0 left-0  w-[250px] -translate-x-full transition-all duration-500 ease-in-out lg:h-auto lg:static lg:translate-x-0 lg:shrink-0 lg:shadow-2xl lg:shadow-indigo-600"
+        className="h-full overflow-auto overscroll-none bg-[#111827] z-20 fixed top-0 left-0  w-[250px] -translate-x-full transition-all duration-500 ease-in-out lg:h-auto lg:static lg:translate-x-0 lg:shrink-0 shadow-[5px_5px_4px_rgba(0,0,0,0.3)]"
         ref={asideRef}
       >
         <div className="h-16 flex justify-center items-center ">
@@ -65,9 +65,9 @@ const Home = () => {
         <Nav />
       </aside>
       <div className="w-full lg:w-auto lg:grow">
-        <header className="bg-white h-16 flex justify-between items-center p-4 shadow-[-5px_6px_2px_rgba(0,0,0,0.3)]">
+        <header className="bg-[#1e2936] h-16 flex justify-between items-center p-4 shadow-[-5px_6px_2px_rgba(0,0,0,0.3)]">
           <Bars3Icon
-            className="h-6 w-6 stroke-indigo-dark  lg:cursor-pointer"
+            className="h-6 w-6 stroke-white lg:cursor-pointer"
             onClick={toggleAside}
           />
           <form className="group relative ml-2 mr-auto">
@@ -83,7 +83,7 @@ const Home = () => {
             <Menu as="div" className="relative">
               <div>
                 <Menu.Button className="flex items-center gap-2">
-                  <ChatBubbleLeftIcon className="w-5 h-5 stroke-slate-400 cursor-pointer" />
+                  <ChatBubbleLeftIcon className="w-5 h-5 stroke-white cursor-pointer" />
                 </Menu.Button>
               </div>
               <Transition
@@ -203,7 +203,7 @@ const Home = () => {
             <Menu as="div" className="relative">
               <div>
                 <Menu.Button className="flex items-center gap-2">
-                  <BellIcon className="w-5 h-5 stroke-slate-400 cursor-pointer" />
+                  <BellIcon className="w-5 h-5 stroke-white cursor-pointer" />
                 </Menu.Button>
               </div>
               <Transition
@@ -327,7 +327,7 @@ const Home = () => {
                   src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
                   alt="avatar"
                 />
-                <span className="text-sm text-gray-600">{auth.user}</span>
+                <span className="text-sm text-white">{auth.user}</span>
                 <ChevronDownIcon className="w-4 h-4 stroke-gray-400 stroke-2" />
               </Popover.Button>
               <Transition
