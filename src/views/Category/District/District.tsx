@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { BriefcaseIcon, MapPinIcon, TrashIcon, CalendarIcon } from "@heroicons/react/24/solid";
-import AddCourse from "./AddCourse";
+
 
 
 type Course = {
@@ -61,7 +61,6 @@ const deleteCourse = (id: string) => {
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-1">
             <div className="sm:flex sm:items-center">
         <div className="mt-4 ">
-      {showOverlay && <AddCourse />}
           <button
             onClick={handleOnClick}
             
@@ -148,4 +147,3 @@ const deleteCourse = (id: string) => {
 };
 
 export default CourseList;
-

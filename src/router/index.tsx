@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
-import AuthContext, { useAuth, authProvider } from "../contexts/auth";
+import AuthContext, { useAuth, authProvider } from "../components/contexts/auth";
 import SignIn from "../views/SignIn";
 import Home from "../views/Home";
 import Layout from "../views/Layout";
@@ -11,9 +11,11 @@ import NotFound from "../views/Errors/NotFound";
 import ServerError from "../views/Errors/ServerError";
 import SignUp from "../views/SignUp";
 import Courses  from "../views/Courses/Courses";
+import Catagory from "../views/Category/Catagory";
 import AddStudients from "../views/Stuidents/AddStudients";
 import ScrumBoard from "../views/ScrumBoard/Home/ScrumBoard";
 import Task from "../views/Task/Task";
+import AddOverlay from "../views/Task/AddOverlay";
 
 
 
@@ -38,6 +40,9 @@ const Router = () => {
             <Route path="AddCourse" element={<AddCourses />} /> 
             <Route path="courses" element={<Courses />} /> 
           </Route>
+          <Route path="Catagory">
+            <Route path="Catagory" element={<Catagory />} />
+          </Route>
           <Route path="Stuidents">
             <Route path="Stuidents" element={<Stuidents />} />
             <Route path="AddStuidents" element={<AddStudients />} />
@@ -50,6 +55,7 @@ const Router = () => {
           </Route>
           <Route path="Task">
             <Route path="Task" element={<Task />} />
+            <Route path="AddOverlay" element={<AddOverlay />} />
           </Route>
         </Route>
         <Route path="/sign-in" element={<SignIn />} />

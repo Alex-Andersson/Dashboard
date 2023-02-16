@@ -7,7 +7,7 @@ import {
   InformationCircleIcon,
 } from "@heroicons/react/24/solid";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../contexts/auth";
+import { useAuth } from "../components/contexts/auth";
 import { useFormik } from "formik";
 
 interface SignInFormValues {

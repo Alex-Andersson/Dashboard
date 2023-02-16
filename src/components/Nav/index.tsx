@@ -4,6 +4,7 @@ import {
   PencilSquareIcon,
   TableCellsIcon,
   DocumentIcon,
+  AcademicCapIcon,
   ViewColumnsIcon,
   FolderOpenIcon
 } from "@heroicons/react/24/outline";
@@ -39,8 +40,18 @@ const Nav = () => {
           ],
         },
         {
-          name: "Stuidents",
+          name: "Catagory",
           icon: <TableCellsIcon className="h-5 w-5 stroke-white" />,
+          child: [
+            {
+              name: "Catagory",
+              path: "Catagory/Catagory",
+            },
+          ],
+        },
+        {
+          name: "Stuidents",
+          icon: <AcademicCapIcon className="h-5 w-5 stroke-white" />,
           child: [
             {
               name: "Stuidents",
@@ -79,6 +90,10 @@ const Nav = () => {
             {
               name: "Task",
               path: "Task/Task",
+            },
+            {
+              name: "AddOverlay",
+              path: "Task/AddOverlay",
             },
           ],
         },

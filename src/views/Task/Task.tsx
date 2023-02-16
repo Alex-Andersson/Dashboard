@@ -1,160 +1,75 @@
-import React, { useState } from "react";
-import axios from "axios";
+/* This example requires Tailwind CSS v2.0+ */
+import { PaperClipIcon } from '@heroicons/react/24/solid'
 
-type NewCourse = {
-  course_name: string;
-  course_description: string;
-  start_date: string;
-  subcategory_names: string[];
-  city_names: string[];
-  days: string[];
-};
-
-const API_URL = "http://192.71.151.213:8080/courses";
-
-const AddCourse: React.FC = () => {
-  const [newCourse, setNewCourse] = useState<NewCourse>({
-    course_name: "",
-    course_description: "",
-    start_date: "",
-    subcategory_names: [],
-    city_names: [],
-    days: [],
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewCourse({ ...newCourse, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post(API_URL, newCourse, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          title: "Add Course",
-          body: JSON.stringify(newCourse),
-          userId: Math.random().toString(36).slice(2),
-          },
-          });
-      if (response.status !== 200) {
-        throw new Error(response.statusText);
-      }
-      console.log(response.data);
-    } catch (err: any) {
-      console.log(err.message);
-    }
-
-    setNewCourse({
-      course_name: "",
-      course_description: "",
-      start_date: "",
-      subcategory_names: [],
-      city_names: [],
-      days: [],
-    });
-  };
-
-// Form for adding a new course to the database
-// new  id ,course name, description, start date, subcategory, city, days.
+export default function Example() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2 -mt-28 sm:px-6 lg:px-8">
-      <div className="w-full max-w-md px-8 py-6 bg-white border border-gray-300 rounded-md shadow-md">
-        <h1 className="text-xl font-medium text-center text-gray-700">
-          Add Course
-        </h1>
-        <form onSubmit={handleSubmit}>
-          <div className="mt-4">
-            <label className="block text-sm text-gray-700" htmlFor="course_name">
-              Course Name
-            </label>
-            <input
-              className="w-full px-3 py-2 text-sm border rounded-md focus:border-lime-400 focus:outline-none focus:ring"
-              type="text"
-              name="course_name"
-              id="course_name"
-              value={newCourse.course_name}
-              onChange={handleChange}
-            />
+    <div className=" bg-[#1e2936] shadow-[-4px_4px_4px_0px_rgba(2,0,0,0.4)] ml-16 rounded-lg w-[90%] ">
+    <div className="bg-white shadow overflow-hidden  sm:rounded-lg w-[70%]">
+      <div className=''>
+      </div>
+      <div className="grid grid-rows-3 grid-flow-col gap-x-[36rem]">
+      <img src="https://www.ibnrushd.se/wp-content/uploads/2021/10/ibn-rushd-loga.png"className="row-span-3"/>
+        <h3 className="text-lg leading-6 font-medium row-span2 mt-6 text-black">Faktura</h3>
+        <p className="mt-3 mr-10 max-w-2xl text-sm row-span-2 text-gray-500">Personal details and application.</p>
+      </div>
+      <div className="border-t border-gray-200 px-4 py-5 sm:px-6">
+        <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
+          <div className="sm:col-span-1">
+            <dt className="text-sm font-medium text-gray-500">Full name</dt>
+            <dd className="mt-1 text-sm text-gray-900">Margot Foster</dd>
           </div>
-          <div className="mt-4">
-            <label className="block text-sm text-gray-700" htmlFor="course_description">
-              Course Description
-            </label>
-            <input
-              className="w-full px-3 py-2 text-sm border rounded-md focus:border-lime-400 focus:outline-none focus:ring"
-              type="text"
-              name="course_description"
-              id="course_description"
-              value={newCourse.course_description}
-              onChange={handleChange}
-            />
+          <div className="sm:col-span-1">
+            <dt className="text-sm font-medium text-gray-500">Application for</dt>
+            <dd className="mt-1 text-sm text-gray-900">Backend Developer</dd>
           </div>
-          <div className="mt-4">
-            <label className="block text-sm text-gray-700" htmlFor="start_date">
-              Start Date
-            </label>
-            <input
-              className="w-full px-3 py-2 text-sm border rounded-md focus:border-lime-400 focus:outline-none focus:ring"
-              type="text"
-              name="start_date"
-              id="start_date"
-              value={newCourse.start_date}
-              onChange={handleChange}
-            />
+          <div className="sm:col-span-1">
+            <dt className="text-sm font-medium text-gray-500">Email address</dt>
+            <dd className="mt-1 text-sm text-gray-900">margotfoster@example.com</dd>
           </div>
-          <div className="mt-4">
-            <label className="block text-sm text-gray-700" htmlFor="subcategory_names">
-              Subcategory Names
-            </label>
-            <input
-              className="w-full px-3 py-2 text-sm border rounded-md focus:border-lime-400 focus:outline-none focus:ring"
-              type="text"
-              name="subcategory_names"
-              id="subcategory_names"
-              value={newCourse.subcategory_names}
-              onChange={handleChange}
-            />
+          <div className="sm:col-span-1">
+            <dt className="text-sm font-medium text-gray-500">Salary expectation</dt>
+            <dd className="mt-1 text-sm text-gray-900">$120,000</dd>
           </div>
-          <div className="mt-4">
-            <label className="block text-sm text-gray-700" htmlFor="city_names">
-              City Names
-            </label>
-            <input
-              className="w-full px-3 py-2 text-sm border rounded-md focus:border-lime-400 focus:outline-none focus:ring"
-              type="text"
-              name="city_names"
-              id="city_names"
-              value={newCourse.city_names}
-              onChange={handleChange}
-            />
+          <div className="sm:col-span-2">
+            <dt className="text-sm font-medium text-gray-500">About</dt>
+            <dd className="mt-1 text-sm text-gray-900">
+              Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim incididunt cillum culpa consequat. Excepteur
+              qui ipsum aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident. Irure nostrud
+              pariatur mollit ad adipisicing reprehenderit deserunt qui eu.
+            </dd>
           </div>
-          <div className="mt-4">
-            <label className="block text-sm text-gray-700" htmlFor="days">
-              Days
-            </label>
-            <input
-              className="w-full px-3 py-2 text-sm border rounded-md focus:border-lime-400 focus:outline-none focus:ring"
-              type="text"
-              name="days"
-              id="days"
-              value={newCourse.days}
-              onChange={handleChange}
-            />
+          <div className="sm:col-span-2">
+            <dt className="text-sm font-medium text-gray-500">Attachments</dt>
+            <dd className="mt-1 text-sm text-gray-900">
+              <ul role="list" className="border border-gray-200 rounded-md divide-y divide-gray-200">
+                <li className="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
+                  <div className="w-0 flex-1 flex items-center">
+                    <PaperClipIcon className="flex-shrink-0 h-5 w-5 text-gray-400" aria-hidden="true" />
+                    <span className="ml-2 flex-1 w-0 truncate">resume_back_end_developer.pdf</span>
+                  </div>
+                  <div className="ml-4 flex-shrink-0">
+                    <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+                      Download
+                    </a>
+                  </div>
+                </li>
+                <li className="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
+                  <div className="w-0 flex-1 flex items-center">
+                    <PaperClipIcon className="flex-shrink-0 h-5 w-5 text-gray-400" aria-hidden="true" />
+                    <span className="ml-2 flex-1 w-0 truncate">coverletter_back_end_developer.pdf</span>
+                  </div>
+                  <div className="ml-4 flex-shrink-0">
+                    <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+                      Download
+                    </a>
+                  </div>
+                </li>
+              </ul>
+            </dd>
           </div>
-          <div className="mt-6">
-            <button
-              className="w-full px-3 py-4 text-white bg-lime-500 rounded-md focus:bg-lime-600 focus:outline-none"
-              type="submit"
-            >
-              Add Course
-            </button>
-          </div>
-        </form>
+        </dl>
       </div>
     </div>
-  );
-};
-
-export default AddCourse;
+  </div>
+  )
+}

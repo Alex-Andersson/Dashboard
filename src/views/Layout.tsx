@@ -15,7 +15,8 @@ import {
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import Nav from "../components/Nav";
 import { Menu, Popover, Transition } from "@headlessui/react";
-import { useAuth } from "../contexts/auth";
+import { useAuth } from "../components/contexts/auth";
+import  Hexagon  from "../assets/darkhexagon.png"
 
 const Home = () => {
   const auth = useAuth();
