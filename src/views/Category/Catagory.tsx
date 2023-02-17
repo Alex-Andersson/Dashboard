@@ -1,113 +1,62 @@
-/* This example requires Tailwind CSS v2.0+ */
-import { Fragment } from 'react'
-import { Popover, Transition } from '@headlessui/react'
-import {
-  BookmarkIcon,
-  HomeModernIcon,
-  ComputerDesktopIcon,
-  GlobeAltIcon,
-  UserGroupIcon,
-} from '@heroicons/react/24/outline'
-import { ChevronDownIcon } from '@heroicons/react/24/solid'
-import CatagoryCard from './CatagoryCard'
+import React from 'react'
+import { PencilSquareIcon } from '@heroicons/react/24/solid'
 
-const solutions = [
-  {
-    name: 'Cities',
-    description: 'Get a better understanding of where your traffic is coming from.',
-    href: '#',
-    icon: HomeModernIcon,
-  },
-  {
-    name: 'subcategory',
-    description: 'Speak directly to your customers in a more meaningful way.',
-    href: '#',
-    icon: BookmarkIcon,
-  }
-]
-
-const resources = [
-  { name: 'Community', href: '#', icon: UserGroupIcon },
-  { name: 'Partners', href: '#', icon: GlobeAltIcon },
-  { name: 'Guides', href: '#', icon: BookmarkIcon },
-  { name: 'Webinars', href: '#', icon: ComputerDesktopIcon },
-]
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ')
-}
-
-export default function Example() {
+function CatagoryCard() {
   return (
-    <div className='pt-3'>
-    <Popover className="relative bg-[#151c24] shadow-[-1px_2px_3px_rgba(0,0,0,0.9)] rounded-lg">
-      <div className="absolute inset-0 shadow z-30 pointer-events-none" aria-hidden="true" />
-      <div className="relative z-20 ">
-        <div className="max-w-7xl mx-auto flex justify-between items-center px-4 py-5 sm:px-6 sm:py-4 lg:px-8 md:justify-start md:space-x-10">
-          <div className="hidden md:flex-1 md:flex md:items-center md:justify-between">
-            <Popover.Group as="nav" className="flex space-x-10">
-              <Popover>
-                {({ open }) => (
-                  <>
-                    <Popover.Button
-                      className={classNames(
-                        open ? 'text-gray-900' : 'text-gray-500',
-                        'group bg-white rounded-md justify-center flex items-center text-base font-medium w-[8rem] hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lime-500'
-                      )}
-                    >
-                      <span>Solutions</span>
-                      <ChevronDownIcon
-                        className={classNames(
-                          open ? 'text-gray-600' : 'text-gray-400',
-                          'ml-2 h-5 w-5 group-hover:text-gray-500'
-                        )}
-                        aria-hidden="true"
-                      />
-                    </Popover.Button>
-                    <Transition
-                      as={Fragment}
-                      enter="transition ease-out duration-200"
-                      enterFrom="opacity-0 -translate-y-1"
-                      enterTo="opacity-100 translate-y-0"
-                      leave="transition ease-in duration-150"
-                      leaveFrom="opacity-100 translate-y-0"
-                      leaveTo="opacity-0 -translate-y-1"
-                    >
-                      <Popover.Panel className="hidden md:block absolute z-10 top-full inset-x-0 transform shadow-lg bg-white">
-                      <div className="max-w-7xl mx-auto grid gap-y-6 px-4 py-6 sm:grid-cols-2 sm:gap-8 sm:px-6 sm:py-8 lg:grid-cols-4 lg:px-8 lg:py-12 xl:py-16">
-                          {solutions.map((item) => (
-                            <a
-                              key={item.name}
-                              href={item.href}
-                              className="-m-3 p-3 flex flex-col justify-between rounded-lg hover:bg-gray-50"
-                            >
-                              <div className="flex md:h-full lg:flex-col">
-                                <div className="flex-shrink-0">
-                                  <span className="inline-flex items-center justify-center h-10 w-10 rounded-md bg-lime-500 text-white sm:h-12 sm:w-12">
-                                    <item.icon className="h-6 w-6" aria-hidden="true" />
-                                  </span>
-                                </div>
-                                <div className="ml-4 md:flex-1 md:flex md:flex-col md:justify-between lg:ml-0 lg:mt-4">
-                                  <div>
-                                    <p className="text-base font-medium text-gray-900">{item.name}</p>
-                                    <p className="mt-1 text-sm text-gray-700">{item.description}</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </a>
-                          ))}
-                        </div>
-                      </Popover.Panel>
-                    </Transition>
-                  </>
-                )}
-              </Popover>
-            </Popover.Group>
+    <div className="grid gap-12 grid-cols-3 pt-32 pl-12 h-9 ">
+      <button >
+        <a href="/Catagory/AddCity">
+          <div className="p-14 py-12 flex items-center justify-center rounded-t-lg opacity-90 bg-[#10161c] shadow-[-1px_2px_3px_rgba(0,0,0,0.9)]">
+            <span className='capitalize text-4xl mt-0.5	text-white'>City</span>
+            <h5 className='w-16 h-14 flex items-center justify-center'>
+              <PencilSquareIcon className="h-8 w-10 text-white" />
+            </h5>
+          </div>
+        </a>
+        <div className="p-14 py-12 flex items-center justify-around rounded-b-lg opacity-90 bg-[#151c24] shadow-[-1px_2px_3px_rgba(0,0,0,0.9)]">
+          <div>
+            <h3>City</h3>
           </div>
         </div>
-      </div>
-    </Popover>
-    <CatagoryCard />
+      </button>
+      <button >
+        <a href="/Catagory/AddDistrict">
+          <div className="p-8 py-12 flex items-center w-96 justify-center rounded-t-lg opacity-90 bg-[#10161c] shadow-[-1px_2px_3px_rgba(0,0,0,0.9)]">
+            <span className='capitalize text-4xl mt-0.5	text-white'>District</span>
+            <h5 className='w-16 h-14 flex items-center justify-center'>
+              <PencilSquareIcon className="h-8 w-10 text-white" />
+            </h5>
+          </div>
+          <div className="p-14 py-12 flex flex-col  items-center w-96 justify-around rounded-b-lg opacity-90 bg-[#151c24] shadow-[-1px_2px_3px_rgba(0,0,0,0.9)]">
+            <div className='w-96 border '>
+              <h3>City</h3>
+            </div>
+            <div className='w-96 border'>
+              <h3>City</h3>
+            </div>
+            <div className='w-96 border'>
+              <h3>City</h3>
+            </div>
+          </div>
+        </a>
+      </button>
+      <button >
+        <a href="/Courses/Courses">
+          <div className="p-8 py-12 flex items-center w-96 justify-center rounded-t-lg opacity-90 bg-[#10161c] shadow-[-1px_2px_3px_rgba(0,0,0,0.9)]">
+            <span className='m-0 capitalize -boldtext-5xl text-4xl mt-0.5	text-white'>Catagory</span>
+            <h5 className='w-16 h-14 flex items-center justify-center'>
+              <PencilSquareIcon className="h-8 w-10 text-white" />
+            </h5>
+          </div>
+          <div className="p-14 py-12 flex items-center w-96 justify-around rounded-b-lg opacity-90 bg-[#151c24] shadow-[-1px_2px_3px_rgba(0,0,0,0.9)]">
+            <div>
+              <h3>City</h3>
+            </div>
+          </div>
+        </a>
+      </button>
     </div>
-  )
+  );
 }
+
+export default CatagoryCard

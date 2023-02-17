@@ -27,7 +27,7 @@ const Nav = () => {
       items: [
         {
           name: "Courses",
-          icon: <PencilSquareIcon className="h-5 w-5 stroke-white" />,
+          icon: <PencilSquareIcon className="h-5 w-5 stroke-white"/>,
           child: [
             {
               name: "Courses",
@@ -40,12 +40,20 @@ const Nav = () => {
           ],
         },
         {
-          name: "Catagory",
+          name: "Category",
           icon: <TableCellsIcon className="h-5 w-5 stroke-white" />,
           child: [
             {
-              name: "Catagory",
-              path: "Catagory/Catagory",
+              name: "Categories",
+              path: "Catagory/Catagories",
+            },
+            {
+              name: "AddCity",
+              path: "Catagory/AddCity",
+            },
+            {
+              name: "AddDistrict",
+              path: "Catagory/AddDistrict",
             },
           ],
         },

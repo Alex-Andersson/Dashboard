@@ -16,6 +16,8 @@ import AddStudients from "../views/Stuidents/AddStudients";
 import ScrumBoard from "../views/ScrumBoard/Home/ScrumBoard";
 import Task from "../views/Task/Task";
 import AddOverlay from "../views/Task/AddOverlay";
+import AddCity from "../views/Category/City/AddCity";
+import AddDistrict from "../views/Category/District/AddDistrict";
 
 
 
@@ -41,7 +43,9 @@ const Router = () => {
             <Route path="courses" element={<Courses />} /> 
           </Route>
           <Route path="Catagory">
-            <Route path="Catagory" element={<Catagory />} />
+            <Route path="Catagories" element={<Catagory />} />
+            <Route path="AddCity" element={<AddCity/>} />
+            <Route path="AddDistrict" element={<AddDistrict />} />
           </Route>
           <Route path="Stuidents">
             <Route path="Stuidents" element={<Stuidents />} />
