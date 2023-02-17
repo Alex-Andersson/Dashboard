@@ -52,7 +52,7 @@ const Home = () => {
   }, [location]);
 
   return (
-    <div className="bg-[#182032] flex min-h-screen w-full lg:h-auto">
+    <div className="flex min-h-screen w-full lg:h-auto bg-cover bg-[url('https://www.pixelstalk.net/wp-content/uploads/images6/Hexagon-HD-Wallpaper-Free-download.jpg')]  ">
       <aside
         className="h-full overflow-auto overscroll-none bg-[#111827] z-20 fixed top-0 left-0  w-[250px] -translate-x-full transition-all duration-500 ease-in-out lg:h-auto lg:static lg:translate-x-0 lg:shrink-0 shadow-[5px_5px_4px_rgba(0,0,0,0.3)]"
         ref={asideRef}

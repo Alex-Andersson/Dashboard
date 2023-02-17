@@ -40,7 +40,7 @@ function classNames(...classes: string[]) {
 export default function Example() {
   return (
     <div className='pt-3'>
-    <Popover className="relative bg-[#1e2936] shadow-[-4px_4px_4px_0px_rgba(2,0,0,0.4)] rounded-lg">
+    <Popover className="relative bg-[#151c24] shadow-[-1px_2px_3px_rgba(0,0,0,0.9)] rounded-lg">
       <div className="absolute inset-0 shadow z-30 pointer-events-none" aria-hidden="true" />
       <div className="relative z-20 ">
         <div className="max-w-7xl mx-auto flex justify-between items-center px-4 py-5 sm:px-6 sm:py-4 lg:px-8 md:justify-start md:space-x-10">
@@ -90,70 +90,12 @@ export default function Example() {
                                 <div className="ml-4 md:flex-1 md:flex md:flex-col md:justify-between lg:ml-0 lg:mt-4">
                                   <div>
                                     <p className="text-base font-medium text-gray-900">{item.name}</p>
-                                    <p className="mt-1 text-sm text-gray-500">{item.description}</p>
+                                    <p className="mt-1 text-sm text-gray-700">{item.description}</p>
                                   </div>
                                 </div>
                               </div>
                             </a>
                           ))}
-                        </div>
-                      </Popover.Panel>
-                    </Transition>
-                  </>
-                )}
-              </Popover>
-              <Popover>
-                {({ open }) => (
-                  <>
-                    <Popover.Button
-                      className={classNames(
-                        open ? 'text-gray-900' : 'text-gray-500',
-                        'group bg-white rounded-md justify-center flex items-center text-base font-medium w-[8rem] hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lime-500'
-                      )}
-                    >
-                      <span>More</span>
-                      <ChevronDownIcon
-                        className={classNames(
-                          open ? 'text-gray-600' : 'text-gray-400',
-                          'ml-2 h-5 w-5 group-hover:text-gray-500'
-                        )}
-                        aria-hidden="true"
-                      />
-                    </Popover.Button>
-
-                    <Transition
-                      as={Fragment}
-                      enter="transition ease-out duration-200"
-                      enterFrom="opacity-0 -translate-y-1"
-                      enterTo="opacity-100 translate-y-0"
-                      leave="transition ease-in duration-150"
-                      leaveFrom="opacity-100 translate-y-0"
-                      leaveTo="opacity-0 -translate-y-1"
-                    >
-                      <Popover.Panel className="hidden md:block absolute z-10 top-full inset-x-0 transform shadow-lg">
-                        <div className="absolute inset-0 flex">
-                          <div className="bg-white w-1/2" />
-                          <div className="bg-gray-50 w-1/2" />
-                        </div>
-                        <div className="relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2">
-                          <nav className="grid gap-y-10 px-4 py-8 bg-white sm:grid-cols-2 sm:gap-x-8 sm:py-12 sm:px-6 lg:px-8 xl:pr-12">
-                            <div>
-                              <h3 className="text-sm font-medium tracking-wide text-gray-500 uppercase">Resources</h3>
-                              <ul role="list" className="mt-5 space-y-6">
-                                {resources.map((item) => (
-                                  <li key={item.name} className="flow-root">
-                                    <a
-                                      href={item.href}
-                                      className="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-gray-50"
-                                    >
-                                      <item.icon className="flex-shrink-0 h-6 w-6 text-gray-400" aria-hidden="true" />
-                                      <span className="ml-4">{item.name}</span>
-                                    </a>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          </nav>
                         </div>
                       </Popover.Panel>
                     </Transition>

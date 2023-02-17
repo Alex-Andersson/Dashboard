@@ -16,7 +16,7 @@ type Course = {
 
 type AsyncData = Array<Course> | undefined;
 
-const API_URL = "http://192.71.151.213:8080/courses";
+const API_URL = "http://192.71.151.213:8080/user/courses";
 
 const CourseList: React.FC = () => {
   const [courses, setCourses] = useState<AsyncData>(undefined);
