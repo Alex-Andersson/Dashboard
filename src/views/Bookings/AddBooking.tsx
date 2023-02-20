@@ -1,7 +1,7 @@
 import React from "react";
 
 
-const AddDistrict = () => {
+const FormGeneral = () => {
 
   return (
     <>
@@ -130,4 +130,4 @@ const AddDistrict = () => {
   );
 };
 
-export default AddDistrict;
+export default FormGeneral;

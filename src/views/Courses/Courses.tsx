@@ -1,147 +1,161 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { BriefcaseIcon, MapPinIcon, TrashIcon, CalendarIcon } from "@heroicons/react/24/solid";
+
 import AddCourse from "./AddCourse";
+import * as types from "../../utils/types";
+import { getCoursesWithCategoriesAndLocations } from "../../services";
+import { getCoursesWithDetails } from "../../services/helpers";
 
+const CourseList = () => {
+  const [coursesWithDetails, setCoursesWithDetails] = useState<types.CoursesWithDetails[]>([]);
 
-type Course = {
-  id: string;
-  course_name: string;
-  course_description: string;
-  start_date: string;
-  subcategory_names: string[];
-  city_names: string[];
-  days: string[];
-};
-
-type AsyncData = Array<Course> | undefined;
-
-const API_URL = "http://192.71.151.213:8080/user/courses";
-
-const CourseList: React.FC = () => {
-  const [courses, setCourses] = useState<AsyncData>(undefined);
-  const [error, setError] = useState<string | null>(null);
-  const [showOverlay, setShowOverlay] = useState(false);
-  
-  const getCourses = async (): Promise<void> => {
-    try {
-      const response = await axios.get(API_URL);
-      if (response.status !== 200) {
-        throw new Error(response.statusText);
-      }
-      setCourses(response.data);
-    } catch (err: any) {
-      setError(err.message);
-    }
-  };
-
+  const populateCourses = async () => {
+    const response = await getCoursesWithCategoriesAndLocations();
+    const data = getCoursesWithDetails({
+      courses: response.courses,
+      categories: response.categories,
+      districts: response.districts,
+    })
+    setCoursesWithDetails(data)
+  }
   useEffect(() => {
-    getCourses();
+    populateCourses();
   }, []);
 
-  if (error) {
-    return <div>An error occurred: {error}</div>;
-  }
-
-  if (!courses) {
-    return <div>Loading...</div>;
-  }
-
-const deleteCourse = (id: string) => {
-    const updatedCourses = courses.filter((course) => course.id !== id);
-    setCourses(updatedCourses);
-  };
-
-  
-  const handleOnClick = () => {
-    setShowOverlay(!showOverlay);
-  };
-
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-1">
-            <div className="sm:flex sm:items-center">
-        <div className="mt-4 ">
-      {showOverlay && <AddCourse />}
-          <button
-            onClick={handleOnClick}
-            
-            className="inline-flex items-center justify-center rounded-md border border-transparent bg-lime-700 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-lime-400 focus:outline-none focus:ring-2 sm:w-auto"
-          >
-            Add Course
-          </button>
-        </div>
+    <div className="px-4 sm:px-6 lg:px-8">
+      <div className="sm:flex sm:items-center mt-4">
+        <a
+          href="/Stuidents/AddStuidents"
+          className="inline-flex items-center justify-center rounded-md border border-transparent bg-green-700 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-400 focus:outline-none focus:ring-2 sm:w-auto"
+        >
+          Add course
+        </a>
       </div>
-      {courses?.map((course) => (
-        <div key={course.id} className="bg-[#1e2936] shadow-[-2px_2px_0px_rgba(0,0,0,0.3)] rounded-lg  pl-8">
-          <div className="flex-1 flex flex-col">
-            <h3 className=" text-white text-xl font-medium">{course.course_name}</h3>
-            <dl className="mt-1 flex-grow flex flex-col justify-between">
-              <dt className="sr-only">Title</dt>
-              <dt className="sr-only">Role</dt>
-              <dd className="mt-3">
-                <span className="px-2 py-1 text-green-800 text-xs font-medium bg-lime-400 rounded-full">
-                {course.subcategory_names}
-                </span>
-              </dd>
-            </dl>
-          </div>
-          <div>
-            <div className="-mt-px flex divide-x divide-white">
-              <div className="w-0 flex-1 flex">
-                <div className="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-white font-medium">
-                  <BriefcaseIcon
-                    className="w-5 h-5 text-white"
-                    aria-hidden="true"
-                  />
-                  <h3 className="ml-3">Full-time</h3>
-                </div>
-              </div>
-              <div className="-ml-px w-0 flex-1 flex">
-                <div className="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-white font-medium">
-                  <MapPinIcon
-                    className="w-5 h-5 text-white"
-                    aria-hidden="true"
-                  />
-                  <h4 className="ml-3">remote</h4>
-                </div>
-              </div>
-              <div className="-ml-px w-0 flex-1 flex">
-                <div className="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-white font-medium">
-                  <CalendarIcon
-                    className="w-5 h-5 text-white"
-                    aria-hidden="true"
-                  />
-                  <h4 className="ml-3">{course.days}</h4>
-                </div>
-              </div>
-              <div className="-ml-px w-0 flex-1 flex">
-                <div className="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-white font-medium">
-                  <MapPinIcon
-                    className="w-5 h-5 text-white"
-                    aria-hidden="true"
-                  />
-                  <div>
-                    {course.city_names.map((city) => (
-                      <h4 className="ml-3">{city}</h4>
+      <div className="mt-8">
+        <div className="flex flex-col">
+          <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+              <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                <table className="min-w-full divide-y divide-gray-200">
+                  <thead className="bg-[#111827] shadow-[-5px_6px_2px_rgba(0,0,0,0.3)]">
+                    <tr>
+                      <th
+                        scope="col"
+                        className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider"
+                      >
+                        Name / Description
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider"
+                      >
+                        Dates / Times
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider"
+                      >
+                        Cities / Kommun
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider"
+                      >
+                        Max Seats
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider"
+                      >
+                        Price
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider"
+                      ></th>
+                      <th scope="col" className="relative px-6 py-3">
+                        <span className="sr-only">Edit</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-[#111827] shadow-[-5px_6px_2px_rgba(0,0,0,0.3)]">
+                    {coursesWithDetails?.map((courseWithDetails) => (
+                      <tr key={courseWithDetails.course.id}>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="flex items-center">
+                            <div>
+                              <div className="text-sm font-medium text-white">
+                                {courseWithDetails.course.course_name}
+                              </div>
+                              <div className="text-sm text-stone-400">
+                                <span className="font-bold">{courseWithDetails.categories.join(", ")}</span> • {courseWithDetails.subcategories.join(", ")}
+                              </div>
+                              <div className="text-sm text-gray-300">
+                                {courseWithDetails.course.course_description}
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-white">
+                          <div className="flex items-left flex-col">
+                            <div className="text-sm font-medium text-white">
+                              {new Date(courseWithDetails.course.start_date).toLocaleDateString(undefined, {
+                                dateStyle: "medium"
+                              })} - {new Date(courseWithDetails.course.end_date).toLocaleDateString(undefined, {
+                                dateStyle: "medium"
+                              })}
+                            </div>
+                            <div className="text-sm text-stone-400">
+                              {courseWithDetails.course.days}
+                            </div>
+                            <div className="text-sm text-gray-300">
+                              {courseWithDetails.course.hours}
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm text-white">
+                            <MapPinIcon className="inline-block w-5 h-5 mr-2 text-white" />
+                            {courseWithDetails.cities.join(", ")}
+                          </div>
+                          <div className="text-sm ml-7 text-stone-400">
+                            {/* region */}
+                            {courseWithDetails.kommun.join(", ")}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-white text-center">
+                          {courseWithDetails.course.max_seats}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-white">
+                          {courseWithDetails.course.price} SEK
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                          <a
+                            href="/Stuidents/AddStuidents"
+                            className="text-white hover:text-lime-600"
+                          >
+                            Edit
+                          </a>
+                        </td>
+
+                        <td className="px-6 py-4">
+                          <button
+                            // onClick={() => deleteUser(student.id)}
+                            className="text-white hover:text-red-600"
+                          >
+                            <TrashIcon className="h-6" />
+                          </button>
+                        </td>
+                      </tr>
                     ))}
-                  </div>
-                </div>
-              </div>
-              <div className="-ml-px w-0 flex-1 flex">
-                <div className="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-600 font-medium">
-                 <button> 
-                  <TrashIcon
-                    onClick={() => deleteCourse(course.id)}
-                    className="w-5 h-5 text-red-600"
-                    aria-hidden="true"
-                  />
-                  </button>
-                </div>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
         </div>
-      ))}
+      </div>
     </div>
   );
 

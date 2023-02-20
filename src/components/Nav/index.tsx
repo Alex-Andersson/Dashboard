@@ -27,7 +27,7 @@ const Nav = () => {
       items: [
         {
           name: "Courses",
-          icon: <PencilSquareIcon className="h-5 w-5 stroke-white"/>,
+          icon: <PencilSquareIcon className="h-5 w-5 stroke-white" />,
           child: [
             {
               name: "Courses",
@@ -40,34 +40,38 @@ const Nav = () => {
           ],
         },
         {
-          name: "Category",
+          name: "Categories",
           icon: <TableCellsIcon className="h-5 w-5 stroke-white" />,
           child: [
             {
               name: "Categories",
-              path: "Catagory/Catagories",
+              path: "Categories/Categories",
             },
             {
-              name: "AddCity",
-              path: "Catagory/AddCity",
+              name: "SubCategories",
+              path: "Categories/SubCategories",
             },
             {
-              name: "AddDistrict",
-              path: "Catagory/AddDistrict",
+              name: "AddSubCategories",
+              path: "Categories/AddSubCategories",
+            },
+            {
+              name: "AddCategories",
+              path: "Categories/AddCategories",
             },
           ],
         },
         {
-          name: "Stuidents",
+          name: "Bookings",
           icon: <AcademicCapIcon className="h-5 w-5 stroke-white" />,
           child: [
             {
-              name: "Stuidents",
-              path: "Stuidents/Stuidents",
+              name: "Bookings",
+              path: "Bookings/Bookings",
             },
             {
-              name: "Add Stuidents",
-              path: "Stuidents/AddStuidents",
+              name: "Add Booking",
+              path: "Bookings/AddBooking",
             },
           ],
         },
@@ -88,47 +92,6 @@ const Nav = () => {
             {
               name: "ScrumBoard",
               path: "ScrumBoard/ScrumBoard",
-            },
-          ],
-        },
-        {
-          name: "File Manager",
-          icon: <FolderOpenIcon className="h-5 w-5 stroke-white" />,
-          child: [
-            {
-              name: "Task",
-              path: "Task/Task",
-            },
-            {
-              name: "AddOverlay",
-              path: "Task/AddOverlay",
-            },
-          ],
-        },
-      ],
-    },
-    {
-      title: "PAGES",
-      items: [
-        {
-          name: "Pages",
-          icon: <DocumentIcon className="h-5 w-5 stroke-white" />,
-          child: [
-            {
-              name: "Sign In",
-              path: "sign-in",
-            },
-            {
-              name: "Sing Up",
-              path: "sign-up",
-            },
-            {
-              name: "404 Error",
-              path: "404",
-            },
-            {
-              name: "500 Error",
-              path: "500",
             },
           ],
         },

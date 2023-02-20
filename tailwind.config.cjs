@@ -2,10 +2,5 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {},
-  extend: {
-    backgroundImage: (theme) => ({
-      "hero-pattern": "url('/src/assets/darkhexagon.png')",
-    }),
-  },
   plugins: [require("@tailwindcss/forms"), require("daisyui")],
 };

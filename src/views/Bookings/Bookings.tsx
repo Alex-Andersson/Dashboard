@@ -9,7 +9,7 @@ import * as types from "../../utils/types";
 import { getCourses, getStudentsByCourseId } from "../../services";
 
 
-export default function Stuidents() {
+export default function Booking() {
   const [courses, setCourses] = useState<types.Course[]>([]);
   const [selectedCourseId, setSelectedCourseId] = useState<string>("");
   const [students, setStudents] = useState<types.Student[]>([])
@@ -53,7 +53,7 @@ export default function Stuidents() {
             selectedOption={(courses.find(course => course.id === selectedCourseId))?.course_name || "Select course"}
           />
           <a
-            href="/Stuidents/AddStuidents"
+            href="/Bookings/AddBooking"
             className="inline-flex items-center justify-center rounded-md border border-transparent bg-green-700 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-400 focus:outline-none focus:ring-2 sm:w-auto ml-2.5"
           >
             Add user
@@ -90,8 +90,15 @@ export default function Stuidents() {
                         scope="col"
                         className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider"
                       >
-                        Login ID
+                        Personal No.
                       </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider"
+                      >
+                        Booking Date
+                      </th>
+
                       <th
                         scope="col"
                         className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider"
@@ -135,15 +142,19 @@ export default function Stuidents() {
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-400 text-green-800">
-                            Web-devoloper
+                            {courses.find(course => course.id === selectedCourseId).course_name}
                           </span>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-white">
-                          {student.email}
+                            {student.personal_number}
                         </td>
+			<td className="px-6 py-4 whitespace-nowrap text-sm text-white">
+                            {new Date(student.booked_at).toLocaleDateString(undefined, { dateStyle: "medium" })}
+                        </td>
+
                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                           <a
-                            href="/Stuidents/AddStuidents"
+                            href="/Booking/AddBooking"
                             className="text-white hover:text-lime-600"
                           >
                             Edit

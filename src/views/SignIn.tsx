@@ -9,6 +9,8 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../components/contexts/auth";
 import { useFormik } from "formik";
+import landingImg from "../assets/landing.jpg"
+
 
 interface SignInFormValues {
   username: string;
@@ -41,12 +43,13 @@ const SignIn = () => {
     },
   });
 
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 h-screen m-4 lg:m-0">
       <div
         className="hidden bg-cover bg-no-repeat bg-center lg:block"
         style={{
-          backgroundImage: `url("${process.env.PUBLIC_URL + "/landing.jpg"}")`,
+            backgroundImage: `url(${landingImg})`,
         }}
       ></div>
       <div className="flex justify-center items-center">
