@@ -58,3 +58,25 @@ export const getCoursesWithCategoriesAndLocations =
       };
     }
   };
+
+  export const getCategories = async (): Promise<types.Category[]> => {
+    try {
+      const response = await axios.get(`${API_URL}/user/categories`);
+      const data = response.data;
+
+      return data;
+    } catch (e) {
+      return [];
+    }
+  }
+
+  export const getSubCategories = async (): Promise<types.Subcategory[]> => {
+    try {
+      const response = await axios.get(`${API_URL}/user/subCategories`);
+      const data = response.data;
+
+      return data;
+    } catch (e) {
+      return [];
+    }
+  }
