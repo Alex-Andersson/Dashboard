@@ -1,97 +1,99 @@
-import React, { useState, useEffect } from "react";
-import { BriefcaseIcon, MapPinIcon, TrashIcon, CalendarIcon } from "@heroicons/react/24/solid";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Category, Subcategory } from '../../utils/types';
 
+interface Props {
+  apiUrl: string;
+}
 
-import * as types from "../../utils/types";
-import { getCoursesWithCategoriesAndLocations } from "../../services";
-import { getCoursesWithDetails } from "../../services/helpers";
+const AddSubcategory: React.FC<Props> = ({ apiUrl }) => {
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
+  const [subcategoryName, setSubcategoryName] = useState('');
 
-const Categories = () => {
-  const [coursesWithDetails, setCoursesWithDetails] = useState<types.CoursesWithDetails[]>([]);
-
-  const populateCourses = async () => {
-    const response = await getCoursesWithCategoriesAndLocations();
-    const data = getCoursesWithDetails({
-      courses: response.courses,
-      categories: response.categories,
-      districts: response.districts,
-    })
-    setCoursesWithDetails(data)
-  }
   useEffect(() => {
-    populateCourses();
-  }, []);
+    // fetch all categories from the API
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get(`${apiUrl}`);
+        setCategories(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchCategories();
+  }, [apiUrl]);
+
+  const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const category = categories.find((c) => c.category_id === event.target.value);
+    setSelectedCategory(category || null);
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (!selectedCategory) {
+      alert('Please select a category.');
+      return;
+    }
+
+    // create a new subcategory object
+    const newSubcategory: { category_name: string; parent_id: string } = {
+      category_name: subcategoryName,
+      parent_id: selectedCategory.category_id,
+    };
+
+    try {
+      await axios.post(`${apiUrl}/admin/subcategory`, newSubcategory);
+      setSelectedCategory(null);
+      setSubcategoryName('');
+      alert('Subcategory added successfully!');
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
-    <div className=" flex flex-col">
-
-      <div className="mt-8 flex justify-center">
-        <div className="flex flex-col">
-          <div className=" overflow-x-auto sm:-mx-3 lg:-mx-2">
-            <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-              <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                <table className="min-w-full divide-y divide-gray-200 mt-16">
-                  <thead className="bg-[#111827] shadow-[-5px_6px_2px_rgba(0,0,0,0.3)]">
-                    <tr>
-                      <th
-                        scope="col"
-                        className="px-6 py-7 text-left  text-lg text-white uppercase tracking-wider"
-                      >
-                        SubCategories
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider"
-                      ></th>
-                      <th scope="col" className="relative px-6 py-3">
-                        <span className="sr-only">Edit</span>
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="bg-[#111827] shadow-[-5px_6px_2px_rgba(0,0,0,0.3)]">
-                    {coursesWithDetails?.map((courseWithDetails) => (
-                      <tr key={courseWithDetails.course.id}>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="text-lg font-medium text-white">
-                            {courseWithDetails.subcategories.join(", ")}
-                          </div>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                          <a
-                            href="/Stuidents/AddStuidents"
-                            className="text-white hover:text-lime-600"
-                          >
-                            Edit
-                          </a>
-                        </td>
-
-                        <td className="px-6 py-4">
-                          <button
-                            // onClick={() => deleteUser(student.id)}
-                            className="text-white hover:text-red-600"
-                          >
-                            <TrashIcon className="h-6" />
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="sm:flex sm:items-center mt-16 flex justify-center">
-        <a
-          href="/Categories/AddSubCategories"
-          className="inline-flex items-center justify-center rounded-md border border-transparent bg-green-700 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-400 focus:outline-none focus:ring-2 sm:w-auto"
+    <div className="p-4">
+      <h1 className="text-lg font-bold mb-4">Add a new subcategory</h1>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="category-select" className="block mb-2 font-medium">
+          Category:
+        </label>
+        <select
+          id="category-select"
+          value={selectedCategory?.category_id || ''}
+          onChange={handleCategoryChange}
+          className="w-full border border-gray-400 rounded py-2 px-3 mb-4"
         >
-          Add SubCategories
-        </a>
-      </div>
+          <option value="">Select a category...</option>
+          {categories.map((category) => (
+            <option key={category.category_id} value={category.category_id}>
+              {category.category_name}
+            </option>
+          ))}
+        </select>
+        <label htmlFor="subcategory-name" className="block mb-2 font-medium">
+          Subcategory name:
+        </label>
+        <input
+          type="text"
+          id="subcategory-name"
+          value={subcategoryName}
+          onChange={(event) => setSubcategoryName(event.target.value)}
+          className="w-full border border-gray-400 rounded py-2 px-3 mb-4"
+        />
+        <button
+          type="submit"
+          className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded"
+          disabled={!selectedCategory}
+        >
+          Add subcategory
+        </button>
+      </form>
     </div>
   );
 };
 
-export default Categories;
+export default AddSubcategory

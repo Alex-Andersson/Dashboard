@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Category, Subcategory } from "../../utils/types";
 
-
 interface Props {
   apiUrl: string;
 }
@@ -13,21 +12,22 @@ const Subcategory: React.FC<Props> = ({ apiUrl }) => {
   const [subcategoryName, setSubcategoryName] = useState('');
 
   useEffect(() => {
-    // fetch all categories from the API
     const fetchCategories = async () => {
       try {
-        const response = await axios.get(`${apiUrl}/categories`);
+        const response = await axios.get('http://192.71.151.213:8080/user/categories');
         setCategories(response.data);
       } catch (error) {
         console.error(error);
       }
     };
+    
 
     fetchCategories();
   }, [apiUrl]);
 
   const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const category = categories.find((c) => c.category_id === event.target.value);
+    const categoryId = event.target.value;
+    const category = categories.find((c) => c.category_id === categoryId);
     setSelectedCategory(category || null);
   };
 
@@ -39,17 +39,19 @@ const Subcategory: React.FC<Props> = ({ apiUrl }) => {
       return;
     }
 
-    // create a new subcategory object
-    const newSubcategory: Subcategory = {
-      subcategory_id: Math.random().toString(36).substr(2, 9),
-      subcategory_name: subcategoryName
+    const requestBody = {
+      category_name: subcategoryName,
+      parent_id: selectedCategory.category_id
     };
 
     try {
-      // update the selected category with the new subcategory
+      const response = await axios.post('http://192.71.151.213:8080/admin/subcategory', requestBody);
+      const newSubcategory: Subcategory = {
+        subcategory_id: response.data.subcategory_id,
+        subcategory_name: subcategoryName
+      };
       const updatedCategory = { ...selectedCategory };
       updatedCategory.subcategories.push(newSubcategory);
-      await axios.put(`${apiUrl}/categories/${selectedCategory.category_id}/subcategories`, updatedCategory);
       setSelectedCategory(updatedCategory);
       setSubcategoryName('');
       alert('Subcategory added successfully!');
