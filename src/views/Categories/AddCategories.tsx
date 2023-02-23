@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Category } from '../../utils/types';
 
-const API_URL = "http://192.71.151.213/admin/category";
+const API_URL = "http://192.71.151.213:8080/admin/category";
 
 const Category: React.FC = () => {
   const [categoryName, setCategoryName] = useState('');

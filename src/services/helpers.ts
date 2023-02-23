@@ -7,7 +7,7 @@ export const getCoursesWithDetails = ({
 }: {
   courses: types.Course[];
   categories: types.Category[];
-  districts: types.District[];
+  districts: types.Location[];
 }): types.CoursesWithDetails[] => {
   const allSubcategoryNamesById: { [key: string]: string } = {};
   const allCategoryNamesById: { [key: string]: string } = {};

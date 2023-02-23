@@ -6,7 +6,8 @@ import {
   DocumentIcon,
   AcademicCapIcon,
   ViewColumnsIcon,
-  FolderOpenIcon
+  FolderOpenIcon,
+  MapPinIcon,
 } from "@heroicons/react/24/outline";
 import List from "./List";
 
@@ -45,19 +46,19 @@ const Nav = () => {
           child: [
             {
               name: "Categories",
-              path: "Categories/Categories",
+              path: "Categories/Catagories",
             },
-            {
+/*             {
               name: "SubCategories",
               path: "Categories/SubCategories",
-            },
+            }, */
             {
-              name: "AddSubCategories",
-              path: "Categories/AddSubCategories",
-            },
-            {
-              name: "AddCategories",
+              name: "Add Categories",
               path: "Categories/AddCategories",
+            },
+            {
+              name: "Add Subcategory",
+              path: "Categories/AddSubcategory",
             },
           ],
         },

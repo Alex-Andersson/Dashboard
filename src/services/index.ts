@@ -19,6 +19,7 @@ export const getCourses = async (): Promise<types.Course[]> => {
 
     return data;
   } catch (e) {
+    console.clear();
     // console.log(e)
     return [];
   }
@@ -36,8 +37,9 @@ export const getStudentsByCourseId = async ({
 
     return data;
   } catch (e) {
+    console.clear();
     // console.log(e)
-    return [];
+    return new Promise((resolve) => resolve([]));
   }
 };
 
@@ -51,6 +53,7 @@ export const getCoursesWithCategoriesAndLocations =
 
       return data;
     } catch (e) {
+      console.clear();
       return {
         courses: [],
         categories: [],
@@ -59,24 +62,65 @@ export const getCoursesWithCategoriesAndLocations =
     }
   };
 
-  export const getCategories = async (): Promise<types.Category[]> => {
-    try {
-      const response = await axios.get(`${API_URL}/user/categories`);
-      const data = response.data;
+export const getDistricts = async (): Promise<types.District[]> => {
+  try {
+    const response = await axios.get(`${API_URL}/user/districts`);
+    const data = response.data;
 
-      return data;
-    } catch (e) {
-      return [];
+    return data;
+  } catch (e) {
+    console.clear();
+    return [];
+  }
+};
+
+export const getLocations = async (): Promise<types.Location[]> => {
+  try {
+    const response = await axios.get(`${API_URL}/user/locations`);
+    const data = response.data;
+
+    return data;
+  } catch (e) {
+    console.clear();
+    return [];
+  }
+};
+
+export const getCategories = async (): Promise<types.Category[]> => {
+  try {
+    const response = await axios.get(`${API_URL}/user/categories`);
+    const data = response.data;
+
+    return data;
+  } catch (e) {
+    console.clear();
+    return [];
+  }
+}
+
+export const getSubcategories = async (): Promise<types.Subcategory[]> => {
+  try {
+    const response = await axios.get(`${API_URL}/user/subcategories`);
+    const data = response.data;
+
+    return data;
+  } catch (e) {
+    console.clear();
+    return [];
+  }
+}
+
+export const addSubcategory = async ({ subcategory_name }: { subcategory_name: string }): Promise<ApiResponse> => {
+  try {
+    const response = await axios.post(`${API_URL}/admin/subcategory`, { subcategory_name });
+    const data = response.data;
+
+    return data;
+  } catch (e) {
+    console.clear();
+    return {
+      success: false,
+      msg: "Error"
     }
   }
-
-  export const getSubCategories = async (): Promise<types.Subcategory[]> => {
-    try {
-      const response = await axios.get(`${API_URL}/user/subCategories`);
-      const data = response.data;
-
-      return data;
-    } catch (e) {
-      return [];
-    }
-  }
+}

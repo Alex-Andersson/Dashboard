@@ -16,7 +16,7 @@ import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import Nav from "../components/Nav";
 import { Menu, Popover, Transition } from "@headlessui/react";
 import { useAuth } from "../components/contexts/auth";
-
+import Hexagon from "../assets/darkhexagon.png";
 
 const Home = () => {
   const auth = useAuth();
@@ -52,27 +52,30 @@ const Home = () => {
   }, [location]);
 
   return (
-    <div className="bg-[#182032] flex min-h-screen w-full lg:h-auto">
+    <div className="flex min-h-screen w-full lg:h-auto bg-cover bg-[url('https://www.pixelstalk.net/wp-content/uploads/images6/Hexagon-HD-Wallpaper-Free-download.jpg')]  ">
       <aside
-        className="h-full overflow-auto overscroll-none bg-[#111827] z-20 fixed top-0 left-0  w-[250px] -translate-x-full transition-all duration-500 ease-in-out lg:h-auto lg:static lg:translate-x-0 lg:shrink-0 shadow-[5px_5px_4px_rgba(0,0,0,0.3)]"
+        className="h-full overflow-auto overscroll-none bg-lime-700 z-20 fixed top-0 left-0  w-[250px] -translate-x-full transition-all duration-500 ease-in-out lg:h-auto lg:static lg:translate-x-0 lg:shrink-0 shadow-[5px_5px_4px_rgba(0,0,0,0.3)]"
         ref={asideRef}
       >
         <div className="h-16 flex justify-center items-center ">
-          <img src="https://www.ibnrushd.se/wp-content/uploads/2021/10/ibn-rushd-loga.png"className="w-16 pr-6"/>
+          <img
+            src="https://www.ibnrushd.se/wp-content/uploads/2021/10/ibn-rushd-loga.png"
+            className="w-16 pr-6"
+          />
           <Link to="/" className="text-white text-2xl font-medium">
-            IBNRUSHD  
+            IBNRUSHD
           </Link>
         </div>
         <Nav />
       </aside>
       <div className="w-full lg:w-auto lg:grow">
-        <header className="bg-[#1e2936] h-16 flex justify-between items-center p-4 shadow-[-5px_6px_2px_rgba(0,0,0,0.3)]">
+        <header className="bg-lime-900 h-16 flex justify-between items-center p-4 shadow-[-5px_6px_2px_rgba(0,0,0,0.3)]">
           <Bars3Icon
             className="h-6 w-6 stroke-white lg:cursor-pointer"
             onClick={toggleAside}
           />
           <form className="group relative ml-2 mr-auto">
-            <MagnifyingGlassIcon className="w-5 h-5 absolute left-3 top-1/2 -mt-2.5 text-slate-400 pointer-events-none group-focus-within:text-lime-600" />
+            <MagnifyingGlassIcon className="w-5 h-5 absolute left-3 top-1/2 -mt-2.5 text-slate-400 pointer-events-none group-focus-within:text-gray-900" />
             <input
               className="focus:ring-2 focus:ring-lime-600 focus:outline-none appearance-none text-sm leading-6 text-slate-900 placeholder-slate-400 rounded-md py-2 pl-10 border-none w-36 md:w-96"
               type="text"
@@ -102,9 +105,7 @@ const Home = () => {
                       {({ active }) => (
                         <button
                           className={`${
-                            active
-                              ? "bg-lime-600 text-white"
-                              : "text-gray-900"
+                            active ? "bg-lime-600 text-white" : "text-gray-900"
                           } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                         >
                           <PencilSquareIcon
@@ -121,9 +122,7 @@ const Home = () => {
                       {({ active }) => (
                         <button
                           className={`${
-                            active
-                              ? "bg-lime-600 text-white"
-                              : "text-gray-900"
+                            active ? "bg-lime-600 text-white" : "text-gray-900"
                           } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                         >
                           <DocumentDuplicateIcon
@@ -142,9 +141,7 @@ const Home = () => {
                       {({ active }) => (
                         <button
                           className={`${
-                            active
-                              ? "bg-lime-600 text-white"
-                              : "text-gray-900"
+                            active ? "bg-lime-600 text-white" : "text-gray-900"
                           } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                         >
                           <ArchiveBoxIcon
@@ -161,9 +158,7 @@ const Home = () => {
                       {({ active }) => (
                         <button
                           className={`${
-                            active
-                              ? "bg-lime-600 text-white"
-                              : "text-gray-900"
+                            active ? "bg-lime-600 text-white" : "text-gray-900"
                           } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                         >
                           <ArrowTopRightOnSquareIcon
@@ -182,9 +177,7 @@ const Home = () => {
                       {({ active }) => (
                         <button
                           className={`${
-                            active
-                              ? "bg-lime-600 text-white"
-                              : "text-gray-900"
+                            active ? "bg-lime-600 text-white" : "text-gray-900"
                           } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                         >
                           <TrashIcon
@@ -222,9 +215,7 @@ const Home = () => {
                       {({ active }) => (
                         <button
                           className={`${
-                            active
-                              ? "bg-lime-600 text-white"
-                              : "text-gray-900"
+                            active ? "bg-lime-600 text-white" : "text-gray-900"
                           } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                         >
                           <PencilSquareIcon
@@ -241,9 +232,7 @@ const Home = () => {
                       {({ active }) => (
                         <button
                           className={`${
-                            active
-                              ? "bg-lime-600 text-white"
-                              : "text-gray-900"
+                            active ? "bg-lime-600 text-white" : "text-gray-900"
                           } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                         >
                           <DocumentDuplicateIcon
@@ -262,9 +251,7 @@ const Home = () => {
                       {({ active }) => (
                         <button
                           className={`${
-                            active
-                              ? "bg-lime-600 text-white"
-                              : "text-gray-900"
+                            active ? "bg-lime-600 text-white" : "text-gray-900"
                           } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                         >
                           <ArchiveBoxIcon
@@ -281,9 +268,7 @@ const Home = () => {
                       {({ active }) => (
                         <button
                           className={`${
-                            active
-                              ? "bg-lime-600 text-white"
-                              : "text-gray-900"
+                            active ? "bg-lime-600 text-white" : "text-gray-900"
                           } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                         >
                           <ArrowTopRightOnSquareIcon
@@ -302,9 +287,7 @@ const Home = () => {
                       {({ active }) => (
                         <button
                           className={`${
-                            active
-                              ? "bg-lime-600 text-white"
-                              : "text-gray-900"
+                            active ? "bg-lime-600 text-white" : "text-gray-900"
                           } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                         >
                           <TrashIcon
@@ -342,9 +325,7 @@ const Home = () => {
               >
                 <Popover.Panel className="absolute right-0 z-10 mt-3 w-[20rem] max-w-sm transform px-4 sm:px-0 lg:max-w-3xl">
                   <ul>
-                    <li>
-                      
-                    </li>
+                    <li></li>
                   </ul>
                   <div className="overflow-hidden rounded-lg shadow-lg bg-white">
                     <div className="p-4 cursor-pointer">

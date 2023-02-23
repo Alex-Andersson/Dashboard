@@ -1,6 +1,9 @@
 import React from "react";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
-import AuthContext, { useAuth, authProvider } from "../components/contexts/auth";
+import AuthContext, {
+  useAuth,
+  authProvider,
+} from "../components/contexts/auth";
 import SignIn from "../views/SignIn";
 import Home from "../views/Home";
 import Layout from "../views/Layout";
@@ -11,14 +14,13 @@ import NotFound from "../views/Errors/NotFound";
 import ServerError from "../views/Errors/ServerError";
 import SignUp from "../views/SignUp";
 import Courses  from "../views/Courses/Courses";
-import AddBooking from "../views/Bookings/AddBooking";
-import ScrumBoard from "../views/ScrumBoard/Home/ScrumBoard";
-import Task from "../views/Task/Task";
-import AddOverlay from "../views/Task/AddOverlay";
 import Categories from "../views/Categories/Categories";
 import SubCategories from "../views/Categories/SubCategories";
-import AddSubCategories from "../views/Categories/AddSubCategories";
+import ScrumBoard from "../views/ScrumBoard/Home/ScrumBoard";
 import AddCategories from "../views/Categories/AddCategories";
+import District from "../views/Locations/District";
+import City from "../views/Locations/City";
+import AddSubcategory from "../views/Categories/AddSubCategories";
 
 
 
@@ -40,18 +42,22 @@ const Router = () => {
           <Route index element={<Home />} />
           <Route path="home" element={<Home />} />
           <Route path="Courses">
-            <Route path="AddCourse" element={<AddCourses />} /> 
-            <Route path="courses" element={<Courses />} /> 
+            <Route path="AddCourse" element={<AddCourses />} />
+            <Route path="courses" element={<Courses />} />
           </Route>
           <Route path="Categories">
-            <Route path="Categories" element={<Categories />} />
+            <Route path="Catagories" element={<Categories />} />
             <Route path="SubCategories" element={<SubCategories />} />
-            <Route path="AddSubCategories" element={<AddSubCategories />} />
-            <Route path="AddCategories" element={<AddCategories />} />
+            <Route path="AddCategories" element={<AddCategories/>} />
+            <Route path="AddSubcategory" element={<AddSubcategory categories={[]} />} />
           </Route>
           <Route path="Bookings">
             <Route path="Bookings" element={<Bookings />} />
-            <Route path="AddBooking" element={<AddBooking />} />
+
+          </Route>
+          <Route path="Locations">
+              <Route path="City" element={<City />} />
+              <Route path="District" element={<District />} />
           </Route>
           <Route path="calender">
             <Route path="calender" element={<Calendar />} />
@@ -89,13 +95,13 @@ const RequireAuth = ({ children }: { children: JSX.Element }) => {
     return <Navigate to="/sign-in" state={{ from: location }} replace />;
   }
 
-  auth.signin(user, () => {});
+  //auth.signin(user, () => {});
 
   return children;
 };
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = React.useState<any>(null);
+  const [user, setUser] = React.useState<unknown>(null);
 
   const signin = (user: string, callback: VoidFunction) => {
     return authProvider.signin(() => {

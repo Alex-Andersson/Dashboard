@@ -1,105 +1,103 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Category, Subcategory } from "../../utils/types";
 
 
-const AddSubCategories = () => {
+interface Props {
+  apiUrl: string;
+}
+
+const Subcategory: React.FC<Props> = ({ apiUrl }) => {
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
+  const [subcategoryName, setSubcategoryName] = useState('');
+
+  useEffect(() => {
+    // fetch all categories from the API
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get(`${apiUrl}/categories`);
+        setCategories(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchCategories();
+  }, [apiUrl]);
+
+  const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const category = categories.find((c) => c.category_id === event.target.value);
+    setSelectedCategory(category || null);
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (!selectedCategory) {
+      alert('Please select a category.');
+      return;
+    }
+
+    // create a new subcategory object
+    const newSubcategory: Subcategory = {
+      subcategory_id: Math.random().toString(36).substr(2, 9),
+      subcategory_name: subcategoryName
+    };
+
+    try {
+      // update the selected category with the new subcategory
+      const updatedCategory = { ...selectedCategory };
+      updatedCategory.subcategories.push(newSubcategory);
+      await axios.put(`${apiUrl}/categories/${selectedCategory.category_id}/subcategories`, updatedCategory);
+      setSelectedCategory(updatedCategory);
+      setSubcategoryName('');
+      alert('Subcategory added successfully!');
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
-    <>
-      <form
-        action="#"
-        method="POST"
-        className="mt-4 flex justify-center pt-10"
-        onSubmit={(e) => e.preventDefault()}
-      >
-        <div className="shadow rounded overflow-hidden w-[32rem]">
-          <div className="bg-[#10161c] shadow-[-1px_2px_3px_rgba(0,0,0,0.9)] opacity-90 px-4 py-5 sm:p-6">
-            <div className="grid grid-cols-1 gap-6">
-              <div className="col-span-6 sm:col-span-3">
-                <label
-                  htmlFor="first-name"
-                  className="block text-sm font-medium text-white"
-                >
-                  Name
-                </label>
-                <input
-                  type="text"
-                  name="Name"
-                  placeholder="Name"
-                  id="first-name"
-                  autoComplete="given-name"
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-lime-500 focus:ring-lime-500 sm:text-sm"
-                />
-              </div>
-              <div className="col-span-6 sm:col-span-3">
-                <label
-                  htmlFor="last-name"
-                  className="block text-sm font-medium text-white"
-                >
-                  District
-                </label>
-                <select
-                  name="District"
-                  placeholder="District"
-                  datatype="dropdown"
-                  id="last-name"
-                  autoComplete="family-name"
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-lime-500 focus:ring-lime-500 sm:text-sm"
-                >
-                  <option>Södermanland</option>
-                  <option>Östergötland</option>
-                  <option>Halland</option>
-                  <option>Skåne</option>
-                </select>
-              </div>
-              <div className="col-span-6 sm:col-span-3">
-                <label
-                  htmlFor="Course"
-                  className="block text-sm font-medium text-white"
-                >
-                  Course
-                </label>
-                <select
-                  id="country"
-                  name="country"
-                  autoComplete="country-name"
-                  className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-lime-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                >
-                  <option>Web-Deveoleper</option>
-                  <option>Systemintegration</option>
-                  <option>Back-End</option>
-                  <option>Front-End</option>
-                </select>
-              </div>
-              <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                <label
-                  htmlFor="region"
-                  className="block text-sm font-medium text-white"
-                >
-                  Region / State
-                </label>
-                <input
-                  type="text"
-                  name="region"
-                  id="region"
-                  autoComplete="address-level1"
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-lime-500 focus:ring-lime-500 sm:text-sm"
-                />
-              </div>
-              
-            </div>
-          </div>
-          <div className="bg-[#10161c] shadow-[-1px_2px_3px_rgba(0,0,0,0.9)] opacity-100 px-4 py-3 text-right sm:px-6">
-            <button
-              type="submit"
-              className="inline-flex justify-center rounded-md border border-transparent bg-lime-700 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-lime-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-            >
-              Save
-            </button>
-          </div>
-        </div>
-      </form>     
-    </>
+    <div className="p-4">
+      <h1 className="text-lg font-bold mb-4">Add a new subcategory</h1>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="category-select" className="block mb-2 font-medium">
+          Category:
+        </label>
+        <select
+          id="category-select"
+          value={selectedCategory?.category_id || ''}
+          onChange={handleCategoryChange}
+          className="w-full border border-gray-400 rounded py-2 px-3 mb-4"
+        >
+          <option value="">Select a category...</option>
+          {categories.map((category) => (
+            <option key={category.category_id} value={category.category_id}>
+              {category.category_name}
+            </option>
+          ))}
+        </select>
+        <label htmlFor="subcategory-name" className="block mb-2 font-medium">
+          Subcategory name:
+        </label>
+        <input
+          type="text"
+          id="subcategory-name"
+          value={subcategoryName}
+          onChange={(event) => setSubcategoryName(event.target.value)}
+          className="w-full border border-gray-400 rounded py-2 px-3 mb-4"
+        />
+        <button
+          type="submit"
+          className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded"
+          disabled={!selectedCategory}
+        >
+          Add subcategory
+        </button>
+      </form>
+    </div>
   );
 };
 
-export default AddSubCategories;
+export default Subcategory;
